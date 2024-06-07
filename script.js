@@ -1,9 +1,12 @@
+let container;
+
 function carregar() {
-    fetch('https://controledemotoristas.wiremockapi.cloud/controledemotoristas')
+    fetch('http://192.168.0.31:8092/REST/VeiculosPatioExpedicao/api/v1/consultaVeiculos')
     .then(response => response.json())
-    .then(veiculos => {
-        const container = document.querySelector("#veiculos-container");
+    .then(data => {
+        const veiculos = data.veiculos;
         veiculos.forEach(veiculo => {
+            container = document.querySelector("#veiculos-container");
             const card = document.createElement("div");
             card.classList.add("card");
 
@@ -156,8 +159,33 @@ function carregar() {
             card.appendChild(entradaContainer);
             card.appendChild(carregamentoContainer);
             container.appendChild(card);
+
         });
     });
 }
+
+setTimeout(function(){
+    location.reload();
+}, 60000);
+
+document.addEventListener("DOMContentLoaded", function() {
+    var loader = document.getElementById("loader");
+    var veiculosContainer = document.getElementById("veiculos-container");
+
+    // Verifica se há conteúdo visível e mostra/oculta o loader
+    function checkContent() {
+        var isVisible = veiculosContainer.offsetHeight > 0;
+        loader.style.display = isVisible ? "none" : "block";
+    }
+
+    // Executa a verificação inicial
+    checkContent();
+
+    // Adiciona um observador de mutação para monitorar mudanças no conteúdo
+    var observer = new MutationObserver(checkContent);
+    observer.observe(veiculosContainer, { childList: true, subtree: true });
+});
+
+
 
 carregar();

@@ -4,7 +4,6 @@
     background-color: #f5f5f5;
     font-family: 'Nunito Sans', sans-serif;
     user-select: none;
-
 }
 
 .header {
@@ -27,6 +26,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+
 }
 
 .nome-container, .rg-container {
@@ -35,7 +35,6 @@
     justify-content: center;
     flex-direction: column;
 }
-
 
 .nome-container img{
     width: 50px; /* Tamanho das imagens */
@@ -47,7 +46,6 @@
     margin-right: 10px; /* Espaço entre a imagem e o texto */
     margin-top: 20px;
 }
-
 
 .card {
     border: 1px solid #1900ff;
@@ -99,6 +97,7 @@
 .card-branco {
     /* Saída Liberada - Entrega */
     border: 2px solid #ffffff;
+    color: black;
 }
 
 .card-cinza {
@@ -129,21 +128,21 @@
 .id {
     margin-top: -50px;
     background-color: transparent;
-    color: white;
     text-align: start;
     width: 100%;
     z-index: 1;
     font-size: 12px;
     padding-left: 10px;
+    color: white;
 }
 
 .status {
     position: absolute;
     margin-top: 8px;
     background-color: transparent;
-    color: white;
     font-weight: bold;
     font-size: 22px;
+    color: white;
 }
 
 .rg {
@@ -226,14 +225,61 @@
     margin-top: -10px;
 }
 
-.card-verde::before {
-    background-color: #28a745;
-}
-
 .card-vermelho::before {
     background-color: #ff0800;
 }
 
+.card-verde::before {
+    background-color: #28a745;
+}
+
 .card-amarelo::before {
     background-color: #ffc107;
+}
+
+.card-pink::before {
+    background-color: #ff0062;
+}
+
+.card-preto::before {
+    background-color: #000000;
+}
+
+.card-branco::before {
+    background-color: #fff;
+    color: black;
+}
+
+.card-cinza::before {
+    background-color: #ccc;
+}
+
+
+#loader {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 9999;
+    width: 120px;
+    height: 120px;
+    margin: -76px 0 0 -76px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid blue;
+    border-right: 16px solid green;
+    border-bottom: 16px solid red;
+    border-left: 16px solid #ffc107;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
