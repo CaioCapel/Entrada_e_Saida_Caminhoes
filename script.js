@@ -168,23 +168,19 @@ setTimeout(function(){
     location.reload();
 }, 60000);
 
-document.addEventListener("DOMContentLoaded", function() {
-    var loader = document.getElementById("loader");
-    var veiculosContainer = document.getElementById("veiculos-container");
+var load;
 
-    // Verifica se há conteúdo visível e mostra/oculta o loader
-    function checkContent() {
-        var isVisible = veiculosContainer.offsetHeight > 0;
-        loader.style.display = isVisible ? "none" : "block";
-    }
+function myFunction() {
+    load = setTimeout(showPage, 3000);
+}
 
-    // Executa a verificação inicial
-    checkContent();
+function showPage() {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("veiculos-container").style.display = "flex"; // Alterado para display: flex
+}
 
-    // Adiciona um observador de mutação para monitorar mudanças no conteúdo
-    var observer = new MutationObserver(checkContent);
-    observer.observe(veiculosContainer, { childList: true, subtree: true });
-});
+
+
 
 
 
