@@ -176,7 +176,7 @@ function myFunction() {
 
 function showPage() {
     document.getElementById("loader").style.display = "none";
-    document.getElementById("veiculos-container").style.display = "flex"; // Alterado para display: flex
+    document.getElementById("veiculos-container").style.display = "flex";
 }
 
 
