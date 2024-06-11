@@ -128,13 +128,14 @@
 }
 
 .id {
-    margin-top: -4%;
+    margin-top: -5%;
     background-color: transparent;
     text-align: start;
     width: 100%;
     z-index: 1;
     font-size: 10px;
     color: white;
+    font-weight: bold;
 }
 
 .status {

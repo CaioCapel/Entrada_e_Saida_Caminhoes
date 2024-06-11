@@ -32,10 +32,6 @@ function carregar() {
                 nomeContainer.appendChild(imgNome);
                 nomeContainer.appendChild(nome);
 
-                const rg = document.createElement("p");
-                rg.className = 'rg';
-                rg.textContent = veiculo.rg;
-
                 const id_carregamento = document.createElement("p");
                 id_carregamento.textContent = veiculo.id_carregamento;
                 id_carregamento.className = 'id';
@@ -161,7 +157,6 @@ function carregar() {
                 card.appendChild(portaria);
                 card.appendChild(id_carregamento);
                 card.appendChild(nomeContainer);
-                card.appendChild(rg);
                 card.appendChild(status);
                 card.appendChild(dados_veiculo);
                 card.appendChild(dadosPlacaContainer);
