@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 * {
-    background-color: #f5f5f5;
     font-family: 'Nunito Sans', sans-serif;
     user-select: none;
     margin: 10px;
+    box-sizing: border-box;  
 }
 
 .header {
     display: flex;
+    flex-wrap: wrap; 
 }
 
 .titulo {
@@ -61,6 +62,8 @@
     flex-wrap: wrap;
     margin: 10px;
     justify-content: space-around;
+    position: relative; 
+
 }
 
 .card img {
@@ -74,32 +77,26 @@
 }
 
 .card-vermelho {
-    /* Sem Autorização */
     border: 2px solid #ff0800;
 }
 
 .card-verde {
-    /* Carga Liberada */
     border: 2px solid #28a745;
 }
 
 .card-amarelo {
-    /* Carga Liberada Manualmente */
     border: 2px solid #d9ff00;
 }
 
 .card-pink {
-    /* Saída Contingência */
     border: 2px solid #ff0062;
 }
 
 .card-preto {
-    /* Saída Normal */
     border: 2px solid #000000;
 }
 
 .card-branco {
-    /* Saída Liberada - Entrega */
     border: 2px solid #ffffff;
 }
 
@@ -117,27 +114,31 @@
 
 .portaria {
     position: absolute;
-    margin-left: 320px;
-    margin-top: 6px;
+    top: 0; 
+    right: 10px; 
     text-align: center;
     z-index: 1;
     width: 30px;
+    height: 30px;
     font-size: 25px;
     color: black;
     background-color: #f5f5f5;
-    border-radius: 100%;
+    border-radius: 50%;
     font-weight: bold;
 }
 
 .id {
-    margin-top: -5%;
-    background-color: transparent;
-    text-align: start;
-    width: 100%;
+    position: absolute;
+    top: 20px; 
+    left: 0; 
+    text-align: center;
     z-index: 1;
+    width: 30px;
+    height: 30px;
     font-size: 10px;
-    color: white;
     font-weight: bold;
+    background-color: transparent;
+    color: #fff;
 }
 
 .status {
@@ -259,20 +260,19 @@
     background-color: #ccc;
 }
 
-
 #loader {
     position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 1;
-  width: 80px;
-  height: 80px;
-  margin: -76px 0 0 -76px;
-  border: 10px solid #f0f0f0;
-  border-radius: 50%;
-  border-top: 10px solid #3498db;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 80px;
+    height: 80px;
+    margin: -76px 0 0 -76px;
+    border: 10px solid #f0f0f0;
+    border-radius: 50%;
+    border-top: 10px solid #3498db;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
 }
 
 @-webkit-keyframes spin {
@@ -288,4 +288,69 @@
 #veiculos-container {
     display: none;
     text-align: center;
-  }
+}
+
+
+
+/*100%*/
+@media (max-width: 1600px) {
+    .card {
+        width: 30%;
+    }
+
+    .portaria {
+        margin-left: 200px;
+        width: 25px;
+        height: 25px;
+        font-size: 20px;
+    }
+}
+/*200%*/
+@media (max-width: 992px) {
+    .card {
+        width: 45%;
+    }
+
+    .portaria {
+        margin-left: 150px;
+    }
+}
+/*250% - 300%*/
+@media (max-width: 768px) {
+    .card {
+        width: 100%;
+    }
+
+    .portaria {
+        top: 5px;
+        right: 5px;
+        width: 25px;
+        height: 25px;
+        font-size: 18px;
+    }
+
+    .id, .status, .rg, .nome, .dados_veiculo, .dados_carregamento {
+        font-size: 16px;
+    }
+
+    .img{
+        width: 120px;
+    }
+}
+/*400% - 500%*/
+@media (max-width: 576px) {
+    .card {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .portaria {
+        width: 20px;
+        height: 20px;
+        font-size: 14px;
+    }
+
+    .id, .status, .rg, .nome, .dados_veiculo, .dados_carregamento {
+        font-size: 14px;
+    }
+}

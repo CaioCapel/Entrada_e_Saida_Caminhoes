@@ -13,7 +13,7 @@ function carregar() {
         .then(response => response.json())
         .then(data => {
             const veiculos = data.veiculos;
-            veiculos.forEach(veiculo => {
+                  veiculos.forEach(veiculo => {
                 container = document.querySelector("#veiculos-container");
                 const card = document.createElement("div");
                 card.classList.add("card");
@@ -155,7 +155,6 @@ function carregar() {
                 }
 
                 card.appendChild(portaria);
-                card.appendChild(id_carregamento);
                 card.appendChild(nomeContainer);
                 card.appendChild(status);
                 card.appendChild(dados_veiculo);
@@ -173,7 +172,7 @@ function carregar() {
 
 setTimeout(function () {
     location.reload();
-}, 120000);
+}, 12000000);
 
 var load;
 
@@ -185,10 +184,4 @@ function showPage() {
     document.getElementById("loader").style.display = "none";
     document.getElementById("veiculos-container").style.display = "flex";
 }
-
-
-
-
-
-
 carregar();
