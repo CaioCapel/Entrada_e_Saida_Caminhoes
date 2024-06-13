@@ -166,6 +166,7 @@ function carregar() {
                 card.appendChild(carregamentoContainer);
                 container.appendChild(card);
 
+
             });
         });
 }

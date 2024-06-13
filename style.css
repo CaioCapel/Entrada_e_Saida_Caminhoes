@@ -180,6 +180,8 @@
     text-align: center;
     margin: 0;
     margin-top: -15px;
+    width: 70%;
+    flex-wrap: wrap;
 }
 
 .dados-container {
@@ -194,6 +196,7 @@
     width: 50px; 
     height: 50px; 
     margin-top: 0;
+    margin-left: 25px;
 }
 
 .dados_carregamento {
