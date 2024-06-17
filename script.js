@@ -172,7 +172,7 @@ function carregar() {
 
 setTimeout(function () {
     location.reload();
-}, 120000000);
+}, 120000);
 
 var load;
 
@@ -184,4 +184,35 @@ function showPage() {
     document.getElementById("loader").style.display = "none";
     document.getElementById("veiculos-container").style.display = "flex";
 }
+
+const now = new Date().toLocaleDateString('pt-BR', options);
+const updateDateElement = document.getElementById('update-date');
+updateDateElement.textContent = 'Última Atualização ' + now;
+updateDateElement.classList.add('update');
+
+//contagem regressiva para atualização da página
+let timeLeft = 120;
+
+function updateCountdown() {
+  // Calcular minutos e segundos restantes
+  let minutes = Math.floor(timeLeft / 60);
+  let seconds = timeLeft % 60;
+
+  // Formatar os minutos e segundos com dois dígitos
+  let formattedMinutes = minutes.toString().padStart(2, '0');
+  let formattedSeconds = seconds.toString().padStart(2, '0');
+
+  document.getElementById('countdown').textContent = 'Próxima Atualização em  ' +  `${formattedMinutes}:${formattedSeconds} ` + "minutos";
+
+  if (timeLeft > 0) {
+    timeLeft--;
+  } else {
+    clearInterval(timer);
+  }
+}
+
+updateCountdown();
+
+let timer = setInterval(updateCountdown, 1000);
+
 carregar();
