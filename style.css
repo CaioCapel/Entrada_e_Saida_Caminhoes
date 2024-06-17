@@ -63,7 +63,7 @@
     margin: 10px;
     justify-content: space-around;
     position: relative; 
-
+    box-shadow: 10px 5px 5px rgb(163, 163, 163);
 }
 
 .card img {

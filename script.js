@@ -172,7 +172,7 @@ function carregar() {
 
 setTimeout(function () {
     location.reload();
-}, 12000000);
+}, 120000000);
 
 var load;
 
