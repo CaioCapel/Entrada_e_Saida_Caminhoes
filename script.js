@@ -21,16 +21,20 @@ function carregar() {
 
                 const iconContainer = document.createElement("div");
                 iconContainer.classList.add("icon-romaneio");
-
+            
                 const temRomaneio = veiculo.romaneios && veiculo.romaneios.length > 0;
-
+            
                 const icon = document.createElement("img");
-                if (temRomaneio) {
+                if (temRomaneio && veiculo.status === "1") {
+                    // Tem romaneio e status é 1
+                    icon.src = "./img/sem_romaneio.png"; 
+                } else if (temRomaneio && veiculo.status === "2") {
+                    // Tem romaneio e status é 2
                     icon.src = "./img/com_romaneio.png"; 
                 } else {
-                    icon.src = "./img/sem_romaneio.png"; 
+                    icon.src = ""; 
                 }
-                icon.alt = "Romaneio";
+                
                 iconContainer.appendChild(icon);
 
                 if (temRomaneio) {
