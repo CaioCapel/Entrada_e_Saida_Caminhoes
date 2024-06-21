@@ -13,10 +13,57 @@ function carregar() {
         .then(response => response.json())
         .then(data => {
             const veiculos = data.veiculos;
-                  veiculos.forEach(veiculo => {
-                container = document.querySelector("#veiculos-container");
+            container = document.querySelector("#veiculos-container");
+
+            veiculos.forEach(veiculo => {
                 const card = document.createElement("div");
                 card.classList.add("card");
+
+                const temRomaneio = veiculo.romaneios && veiculo.romaneios.length > 0;
+
+                if (temRomaneio) {
+                    const iconContainer = document.createElement("div");
+                    iconContainer.classList.add("icon-romaneio");
+
+                    iconContainer.addEventListener("mouseover", () => {
+                        const romaneioContainer = document.createElement("div");
+                        romaneioContainer.classList.add("romaneio-container");
+
+                        veiculo.romaneios.forEach(romaneio => {
+                            const romaneioElement = document.createElement("div");
+                            romaneioElement.classList.add("romaneio");
+
+                            const romaneioFields = [
+                                { label: "Romaneio", value: romaneio.romaneio },
+                                { label: "Matrícula do Conferente", value: romaneio.matricula_conferente },
+                                { label: "Conferente", value: romaneio.conferente }
+                            ];
+
+                            romaneioFields.forEach(field => {
+                                const fieldElement = document.createElement("p");
+                                fieldElement.textContent = `${field.label}: ${field.value}`;
+                                romaneioElement.appendChild(fieldElement);
+                            });
+
+                            romaneioContainer.appendChild(romaneioElement);
+                        });
+
+                        iconContainer.appendChild(romaneioContainer);
+                    });
+
+                    iconContainer.addEventListener("mouseout", () => {
+                        const romaneioContainer = iconContainer.querySelector(".romaneio-container");
+                        if (romaneioContainer) {
+                            romaneioContainer.remove();
+                        }
+                    });
+
+                    const icon = document.createElement("img");
+                    icon.src = "./img/verificado.png";
+                    icon.alt = "Romaneio";
+                    iconContainer.appendChild(icon);
+                    card.appendChild(iconContainer);
+                }
 
                 const nomeContainer = document.createElement("div");
                 nomeContainer.className = 'nome-container';
@@ -42,7 +89,6 @@ function carregar() {
 
                 const dados_veiculo = document.createElement("p");
                 dados_veiculo.className = 'dados_veiculo';
-
 
                 const dadosPlacaContainer = document.createElement("div");
                 dadosPlacaContainer.className = 'dados-container';
@@ -101,12 +147,6 @@ function carregar() {
                 dados_carga.className = 'dados_carga';
                 dados_carga.src = "./img/data-carregamento.png";
                 dados_carga.alt = "Data e Hora Carregamento";
-                console.log(currentDate.toDateString('pt-BR', options));
-
-                if (veiculo.dt_carregamento === '00/00/00') {
-                    dados_carga.style.display = 'none';
-                    entradaContainer.style.margin = 'auto'
-                }
 
                 const dt_carregamento = document.createElement("p");
                 dt_carregamento.className = 'carregamento';
@@ -123,7 +163,6 @@ function carregar() {
                 const portaria = document.createElement("p");
                 portaria.className = 'portaria';
                 portaria.textContent = veiculo.portaria;
-
 
                 switch (veiculo.status) {
                     case "1":
@@ -164,11 +203,10 @@ function carregar() {
                 card.appendChild(entradaContainer);
                 card.appendChild(carregamentoContainer);
                 container.appendChild(card);
-
-
             });
         });
 }
+
 
 setTimeout(function () {
     location.reload();
@@ -190,19 +228,25 @@ const updateDateElement = document.getElementById('update-date');
 updateDateElement.textContent = 'Última Atualização ' + now;
 updateDateElement.classList.add('update');
 
-//contagem regressiva para atualização da página
-let timeLeft = 120;
+
+let timeLeft = 120; 
 
 function updateCountdown() {
-  // Calcular minutos e segundos restantes
   let minutes = Math.floor(timeLeft / 60);
   let seconds = timeLeft % 60;
 
-  // Formatar os minutos e segundos com dois dígitos
-  let formattedMinutes = minutes.toString().padStart(2, '0');
-  let formattedSeconds = seconds.toString().padStart(2, '0');
+  let countdownMessage = '';
 
-  document.getElementById('countdown').textContent = 'Próxima Atualização em  ' +  `${formattedMinutes}:${formattedSeconds} ` + "minutos";
+  if (minutes > 0) {
+    countdownMessage += `${minutes} ${(minutes === 1 ? 'minuto' : 'minutos')}`;
+    if (seconds > 0) {
+      countdownMessage += ` e ${seconds} segundo${seconds !== 1 ? 's' : ''}`;
+    }
+  } else {
+    countdownMessage = `${seconds} segundo${seconds !== 1 ? 's' : ''}`;
+  }
+
+  document.getElementById('countdown').textContent = `Próxima Atualização Em ${countdownMessage}`;
 
   if (timeLeft > 0) {
     timeLeft--;
@@ -211,8 +255,8 @@ function updateCountdown() {
   }
 }
 
-updateCountdown();
-
 let timer = setInterval(updateCountdown, 1000);
+
+updateCountdown();
 
 carregar();
