@@ -19,12 +19,21 @@ function carregar() {
                 const card = document.createElement("div");
                 card.classList.add("card");
 
+                const iconContainer = document.createElement("div");
+                iconContainer.classList.add("icon-romaneio");
+
                 const temRomaneio = veiculo.romaneios && veiculo.romaneios.length > 0;
 
+                const icon = document.createElement("img");
                 if (temRomaneio) {
-                    const iconContainer = document.createElement("div");
-                    iconContainer.classList.add("icon-romaneio");
+                    icon.src = "./img/com_romaneio.png"; 
+                } else {
+                    icon.src = "./img/sem_romaneio.png"; 
+                }
+                icon.alt = "Romaneio";
+                iconContainer.appendChild(icon);
 
+                if (temRomaneio) {
                     iconContainer.addEventListener("mouseover", () => {
                         const romaneioContainer = document.createElement("div");
                         romaneioContainer.classList.add("romaneio-container");
@@ -35,8 +44,6 @@ function carregar() {
 
                             const romaneioFields = [
                                 { label: "Romaneio", value: romaneio.romaneio },
-                                { label: "Matrícula do Conferente", value: romaneio.matricula_conferente },
-                                { label: "Conferente", value: romaneio.conferente }
                             ];
 
                             romaneioFields.forEach(field => {
@@ -57,13 +64,9 @@ function carregar() {
                             romaneioContainer.remove();
                         }
                     });
-
-                    const icon = document.createElement("img");
-                    icon.src = "./img/verificado.png";
-                    icon.alt = "Romaneio";
-                    iconContainer.appendChild(icon);
-                    card.appendChild(iconContainer);
                 }
+
+                card.appendChild(iconContainer);
 
                 const nomeContainer = document.createElement("div");
                 nomeContainer.className = 'nome-container';
@@ -207,7 +210,6 @@ function carregar() {
         });
 }
 
-
 setTimeout(function () {
     location.reload();
 }, 120000);
@@ -228,31 +230,30 @@ const updateDateElement = document.getElementById('update-date');
 updateDateElement.textContent = 'Última Atualização ' + now;
 updateDateElement.classList.add('update');
 
-
-let timeLeft = 120; 
+let timeLeft = 120;
 
 function updateCountdown() {
-  let minutes = Math.floor(timeLeft / 60);
-  let seconds = timeLeft % 60;
+    let minutes = Math.floor(timeLeft / 60);
+    let seconds = timeLeft % 60;
 
-  let countdownMessage = '';
+    let countdownMessage = '';
 
-  if (minutes > 0) {
-    countdownMessage += `${minutes} ${(minutes === 1 ? 'minuto' : 'minutos')}`;
-    if (seconds > 0) {
-      countdownMessage += ` e ${seconds} segundo${seconds !== 1 ? 's' : ''}`;
+    if (minutes > 0) {
+        countdownMessage += `${minutes} ${(minutes === 1 ? 'minuto' : 'minutos')}`;
+        if (seconds > 0) {
+            countdownMessage += ` e ${seconds} segundo${seconds !== 1 ? 's' : ''}`;
+        }
+    } else {
+        countdownMessage = `${seconds} segundo${seconds !== 1 ? 's' : ''}`;
     }
-  } else {
-    countdownMessage = `${seconds} segundo${seconds !== 1 ? 's' : ''}`;
-  }
 
-  document.getElementById('countdown').textContent = `Próxima Atualização Em ${countdownMessage}`;
+    document.getElementById('countdown').textContent = `Próxima Atualização Em ${countdownMessage}`;
 
-  if (timeLeft > 0) {
-    timeLeft--;
-  } else {
-    clearInterval(timer);
-  }
+    if (timeLeft > 0) {
+        timeLeft--;
+    } else {
+        clearInterval(timer);
+    }
 }
 
 let timer = setInterval(updateCountdown, 1000);
