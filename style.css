@@ -5,6 +5,7 @@
     user-select: none;
     margin: 10px;
     box-sizing: border-box;  
+    
 }
 
 .header {
@@ -147,7 +148,7 @@
     background-color: transparent;
     font-weight: bold;
     font-size: 22px;
-    color: #fff;
+    color: #ffffff;
 }
 
 .rg {
@@ -252,7 +253,7 @@
 }
 
 .card-branco::before {
-    background-color: #fff;
+    background-color: #f5f5f5;
     color: black;
 }
 
